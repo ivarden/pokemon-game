@@ -15,9 +15,7 @@ const Layout = ({
       style={{
         backgroundImage: `url(${urlBg})`,
         backgroundRepeat: "no-repeat",
-        backgroundAttachment: "fixed",
-        backgroundPosition: "center",
-        backgroundSize: "cover",
+        backgroundSize: "100% 100%",
         backgroundColor: `${colorBg}`,
       }}
     >
