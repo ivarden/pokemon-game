@@ -1,6 +1,7 @@
 
-[Demo](https://pokemon-game.vercel.app/).}
+[Demo](https://pokemon-game.vercel.app/).
 
+# Sorry, this app is not finished yet :)
 
 ### `yarn start`
 
