@@ -3,10 +3,11 @@ import styles from "./Layout.module.css";
 
 const Layout = ({
   id = 1,
-  title = "Title",
-  descr = "Descripttion",
+  title = "",
+  descr = "",
   urlBg = "",
   colorBg = "",
+  children,
 }) => {
   return (
     <section
@@ -25,8 +26,9 @@ const Layout = ({
             <h3>{title}</h3>
             <span className={styles.separator}></span>
           </div>
-          <div className={[styles.desc, styles.full]}>
+          <div className={`${styles.desc} ${styles.full}`}>
             <p>{descr}</p>
+            {children}
           </div>
         </article>
       </div>
