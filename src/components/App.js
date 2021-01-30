@@ -5,8 +5,8 @@ import PokemonCard from "./PokemonCard";
 
 import "./App.css";
 
-import bg1 from "../assets/bg1.jpg";
-import bg2 from "../assets/bg2.jpg";
+// import bg1 from "../assets/bg1.jpg";
+// import bg2 from "../assets/bg2.jpg";
 import bg3 from "../assets/bg3.jpg";
 
 import POKEMONS from "../data.json";
