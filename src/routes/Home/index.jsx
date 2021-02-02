@@ -1,23 +1,26 @@
-import Header from "./Header";
-import Layout from "./Layout";
-import Footer from "./Footer";
-import PokemonCard from "./PokemonCard";
+import Header from "../../components/Header";
+import Layout from "../../components/Layout";
+import Footer from "../../components/Footer";
+import PokemonCard from "../../components/PokemonCard";
+import MenuHeader from "../../components/MenuHeader";
 
-import "./App.css";
+import styles from "./style.module.css";
 
 // import bg1 from "../assets/bg1.jpg";
 // import bg2 from "../assets/bg2.jpg";
-import bg3 from "../assets/bg3.jpg";
+import bg3 from "../../assets/bg3.jpg";
 
-import POKEMONS from "../data.json";
+import POKEMONS from "../../data.json";
 
-function App() {
+const HomePage = ({ setPage }) => {
   return (
     <>
+      <MenuHeader />
       <Header
         title="Pokemon Game"
         descr="This is simple triple triad card game"
-      />
+        setPage={setPage}
+      ></Header>
       <Layout urlBg={bg3} title="Rules">
         <p>
           In the game two players face off against one another, one side playing
@@ -35,8 +38,8 @@ function App() {
           instead.
         </p>
       </Layout>
-      <Layout  id="cards" title="Cards" colorTitle="#FEFEFE" colorBg="#202736">
-        <div className="flex">
+      <Layout id="cards" title="Cards" colorTitle="#FEFEFE" colorBg="#202736">
+        <div className={styles.flex}>
           {POKEMONS.map((pokemon) => (
             <PokemonCard
               key={pokemon.id}
@@ -52,6 +55,6 @@ function App() {
       <Footer />
     </>
   );
-}
+};
 
-export default App;
+export default HomePage;
