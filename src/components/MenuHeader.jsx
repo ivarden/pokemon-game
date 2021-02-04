@@ -1,14 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import Menu from "./Menu";
 import NavBar from "./NavBar";
 
-const MenuHeader = () => {
-  const [active, setActive] = React.useState(false);
+const MenuHeader = ({ bgActive }) => {
+  const [isOpen, setOpen] = useState(false);
+  const handleClickHamburger = () => {
+    setOpen((prevState) => !prevState);
+  };
+
   return (
-    <div>
-      <NavBar active={active} setActive={setActive} />
-      <Menu active={active} />
-    </div>
+    <>
+      <Menu isOpen={isOpen} handleClickHamburger={handleClickHamburger}/>
+      <NavBar
+        isOpen={isOpen}
+        handleClickHamburger={handleClickHamburger}
+        bgActive={bgActive}
+      />
+    </>
   );
 };
 export default MenuHeader;

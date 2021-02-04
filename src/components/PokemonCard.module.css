@@ -35,6 +35,19 @@
   transform: rotateY(0deg);
 }
 
+/* .pokemonCard.active {
+  animation: flipFront 1000ms 500ms forwards;
+}
+
+@keyframes flipFront {
+  from {
+      transform: rotateY(180deg);
+  }
+  to {
+      transform: rotateY(0deg);
+  }
+} */
+
 .cardFront,
 .cardBack {
   width: 100%;

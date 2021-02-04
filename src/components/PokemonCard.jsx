@@ -10,14 +10,16 @@ const PokemonCard = ({
   values: { top, right, bottom, left },
   img,
   name,
+  isActive,
+  handleClickCard,
 }) => {
-  const [show, setShow] = React.useState(false);
   const handleClick = () => {
-    setShow(!show);
+    handleClickCard(id);
   };
+
   return (
     <div className={styles.root} onClick={handleClick}>
-      <div className={cn([styles.pokemonCard], { [styles.active]: show })}>
+      <div className={cn([styles.pokemonCard], { [styles.active]: isActive })}>
         <div className={styles.cardFront}>
           <div className={cn([styles.wrap], [styles.front])}>
             <div className={cn([styles.pokemon], [styles[type]])}>

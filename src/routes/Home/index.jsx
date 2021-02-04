@@ -1,8 +1,7 @@
+import React from "react";
 import Header from "../../components/Header";
 import Layout from "../../components/Layout";
-import Footer from "../../components/Footer";
 import PokemonCard from "../../components/PokemonCard";
-import MenuHeader from "../../components/MenuHeader";
 
 import styles from "./style.module.css";
 
@@ -12,14 +11,24 @@ import bg3 from "../../assets/bg3.jpg";
 
 import POKEMONS from "../../data.json";
 
-const HomePage = ({ setPage }) => {
+// const HomePage = ({ pokemons, handleClickCard }) => {
+const HomePage = () => {
+    const [pokemons, setPokemons] = React.useState([...POKEMONS]);
+
+  const handleClickCard = (id) => {
+    const pokemons_ = pokemons.map((card) =>
+      card.id === id
+        ? { ...card, isActive: !card.isActive }
+        : { ...card, isActive: card.isActive }
+    );
+    setPokemons(pokemons_);
+  };
+  React.useEffect(() => {}, [pokemons]);
   return (
     <>
-      <MenuHeader />
       <Header
         title="Pokemon Game"
         descr="This is simple triple triad card game"
-        setPage={setPage}
       ></Header>
       <Layout urlBg={bg3} title="Rules">
         <p>
@@ -40,7 +49,7 @@ const HomePage = ({ setPage }) => {
       </Layout>
       <Layout id="cards" title="Cards" colorTitle="#FEFEFE" colorBg="#202736">
         <div className={styles.flex}>
-          {POKEMONS.map((pokemon) => (
+          {pokemons.map((pokemon) => (
             <PokemonCard
               key={pokemon.id}
               id={pokemon.id}
@@ -48,11 +57,12 @@ const HomePage = ({ setPage }) => {
               values={pokemon.values}
               img={pokemon.img}
               name={pokemon.name}
+              isActive={pokemon.isActive}
+              handleClickCard={handleClickCard}
             />
           ))}
         </div>
       </Layout>
-      <Footer />
     </>
   );
 };
