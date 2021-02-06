@@ -3,7 +3,10 @@ import Layout from "../../components/Layout";
 import PokemonCard from "../../components/PokemonCard";
 import styles from "./style.module.css";
 
-import database, { updateDB, addCard } from "../../service/firebase";
+import database, { 
+  updateDB, 
+  // addCard, 
+} from "../../service/firebase";
 
 const GamePage = () => {
   const [pokemons, setPokemons] = React.useState({});
@@ -42,9 +45,8 @@ const GamePage = () => {
 
   return (
     <>
-      <div>This is Game Page!</div>
-      <button onClick={addNewCard}>Add random card!</button>
-      <Layout id="cards" title="Cards" colorTitle="#FEFEFE" colorBg="#202736">
+      <Layout id="cards" title="Game" colorTitle="#FEFEFE" colorBg="#202736">
+        <button onClick={addNewCard}>Add random card!</button>
         <div className={styles.flex}>
           {Object.entries(pokemons).map(
             ([key, { id, type, values, img, name, isActive }]) => (

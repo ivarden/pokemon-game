@@ -27,8 +27,8 @@ const Layout = ({
             <span className={styles.separator}></span>
           </div>
           <div className={`${styles.desc} ${styles.full}`}>
-            <p>{descr}</p>
             {children}
+            <p>{descr}</p>
           </div>
         </article>
       </div>
