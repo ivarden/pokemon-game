@@ -1,42 +1,66 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Layout from "../../components/Layout";
 import PokemonCard from "../../components/PokemonCard";
 import styles from "./style.module.css";
-// import bg2 from "../../assets/bg1.jpg";
 
-import POKEMONS from "../../data.json";
+import database, { updateDB, addCard } from "../../service/firebase";
 
-// const GamePage = ({ pokemons, handleClickCard }) => {
 const GamePage = () => {
-  const [pokemons, setPokemons] = React.useState([...POKEMONS]);
+  const [pokemons, setPokemons] = React.useState({});
+
+  useEffect(() => {
+    database
+      .ref("pokemons")
+      .once("value", (snapshot) => setPokemons(snapshot.val()));
+  }, []);
+
+  useEffect(() => {
+    updateDB("pokemons", pokemons);
+  }, [pokemons]);
 
   const handleClickCard = (id) => {
-    const pokemons_ = pokemons.map((card) =>
-      card.id === id
-        ? { ...card, isActive: !card.isActive }
-        : { ...card, isActive: card.isActive }
+    const pokemons_ = Object.entries(pokemons).map((card) =>
+      card[0] === id
+        ? [card[0], { ...card[1], isActive: !card[1].isActive }]
+        : [card[0], { ...card[1] }]
     );
+    setPokemons(Object.fromEntries(pokemons_));
+  };
+
+  const addNewCard = () => {
+    const cardsCount = Object.entries(pokemons).length - 1;
+    const randomNumber = Math.round(Math.random() * cardsCount);
+    const randomCard = Object.entries(pokemons)[randomNumber][1];
+    const newKey = database.ref().child("pokemons").push().key;
+    const pokemons_ = Object.fromEntries([
+      ...Object.entries(pokemons),
+      [newKey, randomCard],
+    ]);
+    // addCard("pokemons", randomCard);
     setPokemons(pokemons_);
   };
-  React.useEffect(() => {}, [pokemons]);
 
   return (
     <>
       <div>This is Game Page!</div>
+      <button onClick={addNewCard}>Add random card!</button>
       <Layout id="cards" title="Cards" colorTitle="#FEFEFE" colorBg="#202736">
         <div className={styles.flex}>
-          {pokemons.map((pokemon) => (
-            <PokemonCard
-              key={pokemon.id}
-              id={pokemon.id}
-              type={pokemon.type}
-              values={pokemon.values}
-              img={pokemon.img}
-              name={pokemon.name}
-              isActive={pokemon.isActive || false}
-              handleClickCard={handleClickCard}
-            />
-          ))}
+          {Object.entries(pokemons).map(
+            ([key, { id, type, values, img, name, isActive }]) => (
+              <PokemonCard
+                key={key}
+                key_={key}
+                id={id}
+                type={type}
+                values={values}
+                img={img}
+                name={name}
+                isActive={isActive || false}
+                handleClickCard={handleClickCard}
+              />
+            )
+          )}
         </div>
       </Layout>
     </>

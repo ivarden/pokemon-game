@@ -1,17 +1,16 @@
 import React from "react";
-import cn from "classnames";
 import styles from "./NavBar.module.css";
 
-const NavBar = ({ isOpen, handleClickHamburger, bgActive = false }) => {
+const NavBar = ({ isOpen, handleClickHamburger, bgActive }) => {
   const handleClik = () => {
     handleClickHamburger();
   };
   return (
-    <nav className={cn(styles.navbar, { [styles.bgActive]: bgActive })}>
+    <nav className={`${styles.navbar} ${bgActive && styles.bgActive}`}>
       <div className={styles.navWrapper}>
         <p className={styles.brand}>LOGO</p>
         <div
-          className={cn(styles.menuButton, { [styles.active]: isOpen })}
+          className={`${styles.menuButton} ${isOpen && styles.active}`}
           onClick={handleClik}
         >
           <span />

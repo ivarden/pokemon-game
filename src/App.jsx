@@ -1,6 +1,5 @@
 import React from "react";
 import { useRouteMatch, Switch, Route, Redirect } from "react-router-dom";
-import cn from "classnames";
 
 import MenuHeader from "./components/MenuHeader";
 import Footer from "./components/Footer";
@@ -23,7 +22,6 @@ const App = () => {
     );
     setPokemons(pokemons_);
   };
-  // React.useEffect(() => {}, [pokemons]);
 
   return (
     <Switch>
@@ -32,7 +30,7 @@ const App = () => {
         <>
           <MenuHeader bgActive={!match.isExact} />
           <div
-            className={cn(styles.wrap, { [styles.isHomePage]: match.isExact })}
+            className={`${styles.wrap} ${match.isExact && styles.isHomePage}`}
           >
             <Switch>
               <Route

@@ -1,10 +1,10 @@
 import React from "react";
-import cn from "classnames";
 import styles from "./PokemonCard.module.css";
 
 import cardBackSide from "../assets/card-back-side.jpg";
 
 const PokemonCard = ({
+  key_,
   id,
   type,
   values: { top, right, bottom, left },
@@ -14,24 +14,22 @@ const PokemonCard = ({
   handleClickCard,
 }) => {
   const handleClick = () => {
-    handleClickCard(id);
+    handleClickCard(key_);
   };
 
   return (
     <div className={styles.root} onClick={handleClick}>
-      <div className={cn([styles.pokemonCard], { [styles.active]: isActive })}>
+      <div className={`${styles.pokemonCard} ${isActive && styles.active}`}>
         <div className={styles.cardFront}>
-          <div className={cn([styles.wrap], [styles.front])}>
-            <div className={cn([styles.pokemon], [styles[type]])}>
+          <div className={`${styles.wrap} ${styles.front}`}>
+            <div className={`${styles.pokemon} ${styles[type]}`}>
               <div className={styles.values}>
-                <div className={cn([styles.count], [styles.top])}>{top}</div>
-                <div className={cn([styles.count], [styles.right])}>
-                  {right}
-                </div>
-                <div className={cn([styles.count], [styles.bottom])}>
+                <div className={`${styles.count} ${styles.top}`}>{top}</div>
+                <div className={`${styles.count} ${styles.right}`}>{right}</div>
+                <div className={`${styles.count} ${styles.bottom}`}>
                   {bottom}
                 </div>
-                <div className={cn([styles.count], [styles.left])}>{left}</div>
+                <div className={`${styles.count} ${styles.left}`}>{left}</div>
               </div>
               <div className={styles.imgContainer}>
                 <img src={img} alt={name} />
@@ -48,7 +46,7 @@ const PokemonCard = ({
         </div>
 
         <div className={styles.cardBack}>
-          <div className={cn([styles.wrap], [styles.back])}>
+          <div className={`${styles.wrap} ${styles.back}`}>
             <img src={cardBackSide} alt="Сard Backed" />
           </div>
         </div>
