@@ -1,25 +1,17 @@
+import React from "react";
 import Header from "../../components/Header";
 import Layout from "../../components/Layout";
-import Footer from "../../components/Footer";
-import PokemonCard from "../../components/PokemonCard";
-import MenuHeader from "../../components/MenuHeader";
 
-import styles from "./style.module.css";
+// import styles from "./style.module.css";
 
-// import bg1 from "../assets/bg1.jpg";
-// import bg2 from "../assets/bg2.jpg";
 import bg3 from "../../assets/bg3.jpg";
 
-import POKEMONS from "../../data.json";
-
-const HomePage = ({ setPage }) => {
+const HomePage = () => {
   return (
     <>
-      <MenuHeader />
       <Header
         title="Pokemon Game"
         descr="This is simple triple triad card game"
-        setPage={setPage}
       ></Header>
       <Layout urlBg={bg3} title="Rules">
         <p>
@@ -38,21 +30,6 @@ const HomePage = ({ setPage }) => {
           instead.
         </p>
       </Layout>
-      <Layout id="cards" title="Cards" colorTitle="#FEFEFE" colorBg="#202736">
-        <div className={styles.flex}>
-          {POKEMONS.map((pokemon) => (
-            <PokemonCard
-              key={pokemon.id}
-              id={pokemon.id}
-              type={pokemon.type}
-              values={pokemon.values}
-              img={pokemon.img}
-              name={pokemon.name}
-            />
-          ))}
-        </div>
-      </Layout>
-      <Footer />
     </>
   );
 };

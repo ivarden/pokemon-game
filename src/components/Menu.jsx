@@ -1,21 +1,23 @@
 import React from "react";
-import cn from "classnames";
+import { Link } from "react-router-dom";
 import routes from "../routes";
 import styles from "./Menu.module.css";
 
-const Menu = ({ active }) => {
+const Menu = ({ isOpen, handleClickHamburger }) => {
   return (
     <div
-      className={cn([styles.menuContainer], {
-        [styles.active]: active,
-      })}
+      className={`${styles.menuContainer}
+        ${isOpen === true ? styles.active : styles.deactive}
+      `}
     >
       <div className={styles.overlay} />
-      <div className={styles.menuItems}>
+      <div>
         <ul>
-          {routes.map((rout) => (
-            <li key={rout.id}>
-              <a href={`#${rout.link}`}>{rout.title}</a>
+          {routes.map(({ id, link, title }) => (
+            <li key={id}>
+              <Link to={link} onClick={handleClickHamburger}>
+                {title}
+              </Link>
             </li>
           ))}
         </ul>

@@ -1,4 +1,5 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 import styles from "./Header.module.css";
 
 const Header = ({
@@ -7,12 +8,16 @@ const Header = ({
   setPage,
   children,
 }) => {
+  const history = useHistory();
+
   const handleClick = () => {
-    setPage && setPage("game");
+    history.push("/game");
   };
   return (
     <header className={styles.root}>
       <div className={styles.forest}></div>
+      <div className={styles.silhouette}></div>
+      <div className={styles.moon}></div>
       <div className={styles.container}>
         <h1>{title}</h1>
         <p>{descr}</p>
