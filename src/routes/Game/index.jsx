@@ -3,31 +3,39 @@ import Layout from "../../components/Layout";
 import PokemonCard from "../../components/PokemonCard";
 import styles from "./style.module.css";
 
-import database, { 
-  updateDB, 
-  // addCard, 
-} from "../../service/firebase";
+import database, { updateDB, readDB } from "../../service/firebase";
 
 const GamePage = () => {
   const [pokemons, setPokemons] = React.useState({});
 
   useEffect(() => {
-    database
-      .ref("pokemons")
-      .once("value", (snapshot) => setPokemons(snapshot.val()));
+    readDB("pokemons").then((snapshot) => {
+      setPokemons(snapshot.val());
+    });
   }, []);
 
-  useEffect(() => {
-    updateDB("pokemons", pokemons);
-  }, [pokemons]);
+  useEffect(() => {}, [pokemons]);
+
+  const updatePokemonsHadle = async (dbName, pokemons) =>
+    await updateDB(dbName, pokemons)
+      .then(() => {
+        setPokemons(pokemons);
+        console.log("Collection successfully updated!");
+      })
+      .catch((error) => {
+        console.error("Error updating collection: ", error);
+      });
 
   const handleClickCard = (id) => {
-    const pokemons_ = Object.entries(pokemons).map((card) =>
-      card[0] === id
-        ? [card[0], { ...card[1], isActive: !card[1].isActive }]
-        : [card[0], { ...card[1] }]
+    const pokemons_ = Object.fromEntries(
+      Object.entries(pokemons).map((card) =>
+        card[0] === id
+          ? [card[0], { ...card[1], isActive: !card[1].isActive }]
+          : [card[0], { ...card[1] }]
+      )
     );
-    setPokemons(Object.fromEntries(pokemons_));
+
+    updatePokemonsHadle("pokemons", pokemons_);
   };
 
   const addNewCard = () => {
@@ -39,8 +47,8 @@ const GamePage = () => {
       ...Object.entries(pokemons),
       [newKey, randomCard],
     ]);
-    // addCard("pokemons", randomCard);
-    setPokemons(pokemons_);
+
+    updatePokemonsHadle("pokemons", pokemons_);
   };
 
   return (

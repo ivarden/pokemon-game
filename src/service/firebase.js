@@ -19,21 +19,10 @@ export const database = firebase.database();
 export default database;
 
 export const readDB = async (dbName) =>
-  await database.ref(dbName).once("value", (snapshot) => {
-    const res = snapshot.val();
-    return res;
-  });
+  await database.ref(dbName).once("value");
 
-export const updateDB = (dbName, data) => {
-  database
-    .ref(dbName)
-    .update(data)
-    .then(() => {
-      console.log("Collection successfully updated!");
-    })
-    .catch((error) => {
-      console.error("Error updating collection: ", error);
-    });
+export const updateDB = async (dbName, data) => {
+  return await database.ref(dbName).update(data);
 };
 
 export const addCard = (dbName, data) => {
@@ -48,6 +37,3 @@ export const addCard = (dbName, data) => {
       console.error("Error add item: ", error);
     });
 };
-
-
-
