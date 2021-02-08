@@ -16,7 +16,7 @@ const GamePage = () => {
 
   useEffect(() => {}, [pokemons]);
 
-  const updatePokemonsHadle = async (dbName, pokemons) =>
+  const handleUpdatePokemons = async (dbName, pokemons) =>
     await updateDB(dbName, pokemons)
       .then(() => {
         setPokemons(pokemons);
@@ -35,7 +35,7 @@ const GamePage = () => {
       )
     );
 
-    updatePokemonsHadle("pokemons", pokemons_);
+    handleUpdatePokemons("pokemons", pokemons_);
   };
 
   const addNewCard = () => {
@@ -48,7 +48,7 @@ const GamePage = () => {
       [newKey, randomCard],
     ]);
 
-    updatePokemonsHadle("pokemons", pokemons_);
+    handleUpdatePokemons("pokemons", pokemons_);
   };
 
   return (
