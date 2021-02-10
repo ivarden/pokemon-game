@@ -6,3 +6,30 @@
 
   /* min-height: 100vh; */
 }
+
+.buttonWrap button {
+  display: flex;
+  justify-content: center;
+  padding: 10px 20px;
+  margin: 10px auto;
+  background-color: #f300b4;
+  color: white;
+  font-size: 24px;
+  border: 0;
+  cursor: pointer;
+  outline: none;
+  transition: all .3s;
+}
+
+.buttonWrap button:hover {
+  background-color: #f300b4;
+  padding: 12px 24px;
+  margin: 8px auto;
+}
+
+.buttonWrap button:active {
+  background-color: #f300b4;
+  padding: 8px 18px;
+  margin: 12px auto;
+}
+

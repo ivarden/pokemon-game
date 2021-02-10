@@ -1,16 +1,22 @@
-import React from "react";
-import Layout from "../../../../components/Layout";
+import React, { useContext } from "react";
 import PokemonCard from "../../../../components/PokemonCard";
+import { PokemonContext } from "../../../../context/pokemonContext";
 
-import styles from "./style.module.css";
+import s from "./style.module.css";
 
-const GamePage = ({ pokemons, addPokemon, handleClickCard }) => {
+const StartPage = ({ pokemons, handleClickCard, handleStartGame }) => {
+  const { selectedPokemons } = useContext(PokemonContext);
   return (
-    <Layout id="cards" title="Game" colorTitle="#FEFEFE" colorBg="#202736">
-      <div>
-        <button onClick={addPokemon}>Start Game</button>
+    <>
+      <div className={s.buttonWrap}>
+        <button
+          onClick={handleStartGame}
+          disabled={Object.keys(selectedPokemons).length < 5}
+        >
+          Start Game
+        </button>
       </div>
-      <div className={styles.flex}>
+      <div className={s.flex}>
         {Object.entries(pokemons).map(
           ([key, { id, type, values, img, name, isActive, isSelected }]) => (
             <PokemonCard
@@ -28,8 +34,8 @@ const GamePage = ({ pokemons, addPokemon, handleClickCard }) => {
           )
         )}
       </div>
-    </Layout>
+    </>
   );
 };
 
-export default GamePage;
+export default StartPage;

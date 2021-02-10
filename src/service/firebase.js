@@ -20,7 +20,7 @@ const Firebase = {
     database.ref("pokemons").on("value", (snapshot) => {
       cb(snapshot.val());
     }),
-
+  offPokemonsSoket: () => database.ref("pokemons").off(),
   getPokemonsOnce: async () =>
     await database
       .ref("pokemons")
