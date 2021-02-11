@@ -8,6 +8,19 @@
   cursor: pointer;
 }
 
+.root__min {
+  max-width: 200px;
+  max-height: 200px;
+  width: 200px;
+  height: 200px;
+  padding-top: 20px;
+  perspective: 1000px;
+  cursor: pointer;
+}
+.root__min:nth-child(1n + 2) {
+  margin-top: -100px;
+}
+
 .pokemonCard {
   --fire: #fddfdf;
   --grass: #defde0;
@@ -33,9 +46,8 @@
   transform: rotateY(180deg);
   max-width: 268px;
   max-height: 388px;
-  width: 268px;
-  height: 388px;
 }
+
 
 .pokemonCard.active {
   transform: rotateY(0deg);
@@ -55,11 +67,14 @@
 } */
 
 .pokemonCard.selected {
-  margin-top: -40px;
+  margin-top: -20px;
+  margin-bottom: 20px;
 }
-.selected {
-  margin-top: -40px;
-}
+
+/* .selected {
+  margin-top: -20px;
+  margin-bottom: 20px;
+} */
 
 .cardFront,
 .cardBack {

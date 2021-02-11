@@ -7,7 +7,6 @@ import { PokemonContext } from "../../context/pokemonContext";
 
 const IndexPage = () => {
   const [selectedPokemons, setSelectedPokemons] = useState({});
-  console.log(selectedPokemons);
   const match = useRouteMatch();
 
   const handleSelectedPokemons = (key, pokemon) => {

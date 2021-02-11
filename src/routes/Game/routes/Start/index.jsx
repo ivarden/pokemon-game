@@ -29,8 +29,6 @@ const Container = () => {
   };
 
   const handleStartGame = () => {
-    console.log("history.push(/game/board)");
-    console.log("handleStartGame|selectedPokemons", selectedPokemons);
     history.push("/game/board");
   };
 

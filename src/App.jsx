@@ -24,8 +24,8 @@ const App = () => {
             <MenuHeader bgActive={!isPadding} />
             <div className={`${styles.wrap} ${isPadding && styles.isHomePage}`}>
               <Switch>
-                <Route exact path="/" component={() => <HomePage />} />
-                <Route path="/game" component={() => <GamePage />} />
+                <Route exact path="/" component={HomePage} />
+                <Route path="/game" component={GamePage} />
                 <Route path="/about" render={() => <h1>About</h1>} />
                 <Route path="/contact" render={() => <h1>Contact</h1>} />
                 <Route render={() => <Redirect to="/404" />} />

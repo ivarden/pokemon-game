@@ -5,8 +5,9 @@ import s from "./style.module.css";
 
 const BoardPage = () => {
   const { selectedPokemons } = useContext(PokemonContext);
-  console.log("BoardPage|selectedPokemons", selectedPokemons);
-
+  const handleClickCard = () => {
+    console.log("BoardPage|handleClickCard");
+  };
   return (
     <div className={s.root}>
       <div className={s.playerOne}>
@@ -20,9 +21,11 @@ const BoardPage = () => {
               values={values}
               img={img}
               name={name}
-              isActive={!isActive ? true : false}
-              isSelected={isSelected}
-              // handleClickCard={handleClickCard}
+              minimize={true}
+              className={"card"}
+              isActive={true}
+              isSelected={true}
+              handleClickCard={handleClickCard}
             />
           )
         )}
