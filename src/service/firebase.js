@@ -13,27 +13,28 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 
-export const fire = firebase;
-export const database = firebase.database();
+const database = firebase.database();
 
-export default database;
+const Firebase = {
+  getPokemonsSoket: (cb) =>
+    database.ref("pokemons").on("value", (snapshot) => {
+      cb(snapshot.val());
+    }),
+  offPokemonsSoket: () => database.ref("pokemons").off(),
+  getPokemonsOnce: async () =>
+    await database
+      .ref("pokemons")
+      .once("value")
+      .then((snapshot) => snapshot.val()),
 
-export const readDB = async (dbName) =>
-  await database.ref(dbName).once("value");
+  postPokemon: (key, pokemon) => {
+    database.ref(`pokemons/${key}`).update(pokemon);
+  },
 
-export const updateDB = async (dbName, data) => {
-  return await database.ref(dbName).update(data);
+  addPokemon: (pokemon, cb) => {
+    const newKey = database.ref().child("pokemons").push().key;
+    database.ref(`pokemons/${newKey}`).set(pokemon);
+  },
 };
 
-export const addCard = (dbName, data) => {
-  database
-    .ref()
-    .child(dbName)
-    .push(data)
-    .then(() => {
-      console.log("Item succesfully added!");
-    })
-    .catch((error) => {
-      console.error("Error add item: ", error);
-    });
-};
+export default Firebase;

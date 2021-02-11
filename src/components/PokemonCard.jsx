@@ -1,7 +1,5 @@
 import React from "react";
-import styles from "./PokemonCard.module.css";
-
-import cardBackSide from "../assets/card-back-side.jpg";
+import s from "./PokemonCard.module.css";
 
 const PokemonCard = ({
   key_,
@@ -11,44 +9,49 @@ const PokemonCard = ({
   img,
   name,
   isActive,
+  minimize,
+  className,
+  isSelected,
   handleClickCard,
 }) => {
   const handleClick = () => {
-    handleClickCard(key_);
+    handleClickCard && handleClickCard(key_);
   };
 
   return (
-    <div className={styles.root} onClick={handleClick}>
-      <div className={`${styles.pokemonCard} ${isActive && styles.active}`}>
-        <div className={styles.cardFront}>
-          <div className={`${styles.wrap} ${styles.front}`}>
-            <div className={`${styles.pokemon} ${styles[type]}`}>
-              <div className={styles.values}>
-                <div className={`${styles.count} ${styles.top}`}>{top}</div>
-                <div className={`${styles.count} ${styles.right}`}>{right}</div>
-                <div className={`${styles.count} ${styles.bottom}`}>
-                  {bottom}
-                </div>
-                <div className={`${styles.count} ${styles.left}`}>{left}</div>
+    <div className={minimize ? s.root__min : s.root} onClick={handleClick}>
+      <div
+        className={`${className} ${s.pokemonCard} ${
+          minimize ? s.pokemonCard__min : ""
+        } ${isSelected && s.selected} ${isActive && s.active}`}
+      >
+        <div className={s.cardFront}>
+          <div className={`${s.wrap} ${s.front}`}>
+            <div className={`${s.pokemon} ${s[type]}`}>
+              <div className={s.values}>
+                <div className={`${s.count} ${s.top}`}>{top}</div>
+                <div className={`${s.count} ${s.right}`}>{right}</div>
+                <div className={`${s.count} ${s.bottom}`}>{bottom}</div>
+                <div className={`${s.count} ${s.left}`}>{left}</div>
               </div>
-              <div className={styles.imgContainer}>
+              <div className={s.imgContainer}>
                 <img src={img} alt={name} />
               </div>
-              <div className={styles.info}>
-                <span className={styles.number}>#{id}</span>
-                <h3 className={styles.name}>{name}</h3>
-                <small className={styles.type}>
-                  Type: <span>{type}</span>
-                </small>
-              </div>
+              {!minimize && (
+                <div className={s.info}>
+                  <span className={s.number}>#{id}</span>
+                  <h3 className={s.name}>{name}</h3>
+                  <small className={s.type}>
+                    Type: <span>{type}</span>
+                  </small>
+                </div>
+              )}
             </div>
           </div>
         </div>
 
-        <div className={styles.cardBack}>
-          <div className={`${styles.wrap} ${styles.back}`}>
-            <img src={cardBackSide} alt="Сard Backed" />
-          </div>
+        <div className={s.cardBack}>
+          <div className={`${s.wrap} ${s.back}`}></div>
         </div>
       </div>
     </div>
