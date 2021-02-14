@@ -1,21 +1,25 @@
 .root {
-  max-width: 268px;
-  max-height: 388px;
+  max-width: 180px;
+  max-height: 250px;
   width: 268px;
   height: 388px;
-  margin: 16px;
+  /* margin: 16px; */
   perspective: 1000px;
   cursor: pointer;
 }
 
 .root__min {
-  max-width: 200px;
-  max-height: 200px;
+  max-width: 180px;
+  max-height: 180px;
   width: 200px;
   height: 200px;
-  padding-top: 20px;
-  perspective: 1000px;
+  /* padding-top: 20px; */
+  /* margin-top: 20px; */
+  /* perspective: 1000px; */
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .root__min:nth-child(1n + 2) {
   margin-top: -100px;
@@ -35,7 +39,7 @@
   --psychic: #eaeda1;
   --flying: #f5f5f5;
   --fighting: #e6e0d4;
-  --normal: #F5F5F;
+  --normal: #f5f5f5;
 
   width: 100%;
   height: 100%;
@@ -47,7 +51,6 @@
   max-width: 268px;
   max-height: 388px;
 }
-
 
 .pokemonCard.active {
   transform: rotateY(0deg);
@@ -70,17 +73,19 @@
   margin-top: -20px;
   margin-bottom: 20px;
 }
+.selected2 {
+  margin-left: -20px;
+}
 
-/* .selected {
-  margin-top: -20px;
-  margin-bottom: 20px;
-} */
+.selected3 {
+  margin-left: 20px;
+}
 
 .cardFront,
 .cardBack {
   width: 100%;
   height: 100%;
-  border-radius: 24px;
+  border-radius: 28px;
   background: var(--normal);
   position: absolute;
   top: 0;
@@ -125,7 +130,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  border-radius: 24px;
+  border-radius: 28px;
 }
 
 .wrap.back {
@@ -202,13 +207,20 @@
   background-color: var(--normal);
 }
 
+.blue {
+  background-color: #a8caea;
+}
+.red {
+  background-color: #d998b2;
+}
+
 .pokemon .imgContainer {
   background-color: rgba(255, 255, 255, 0.6);
   border-radius: 50%;
   width: 140px;
   height: 140px;
   text-align: center;
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
 }
 
 .pokemon .imgContainer img {
@@ -235,25 +247,25 @@
 .values {
   position: absolute;
   display: block;
-  top: 20px;
-  left: 20px;
-  font-size: 26px;
-  line-height: 26px;
-  width: 78px;
+  top: 2px;
+  left: 4px;
+  font-size: 20px;
+  line-height: 22px;
+  width: 56px;
   height: 78px;
 }
 
 .count {
   position: absolute;
   width: 30px;
-  height: 26px;
+  height: 36px;
   text-align: center;
 }
 
 .count.top {
   left: 50%;
   transform: translate(-50%, 0);
-  top: 0;
+  top: 8px;
 }
 
 .count.left {

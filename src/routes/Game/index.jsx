@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Switch, Route, useRouteMatch } from "react-router-dom";
+import { Switch, Route, useRouteMatch, Redirect } from "react-router-dom";
 import StartPage from "./routes/Start";
 import BoardPage from "./routes/Board";
 import FinishPage from "./routes/Finish";
@@ -7,6 +7,12 @@ import { PokemonContext } from "../../context/pokemonContext";
 
 const IndexPage = () => {
   const [selectedPokemons, setSelectedPokemons] = useState({});
+  const [player1Cards, setPlayer1Cards] = useState([]);
+  const [player2Cards, setPlayer2Cards] = useState([]);
+
+  // console.log("IndexPage|player1Cards", player1Cards);
+  // console.log("IndexPage|player2Cards", player2Cards);
+
   const match = useRouteMatch();
 
   const handleSelectedPokemons = (key, pokemon) => {
@@ -22,12 +28,25 @@ const IndexPage = () => {
 
   return (
     <PokemonContext.Provider
-      value={{ selectedPokemons, handleSelectedPokemons }}
+      value={{
+        // selectedPokemons: Object.values(selectedPokemons).map((item) => ({
+        //   ...item,
+        //   possession: "blue",
+        // })),
+        selectedPokemons,
+        setSelectedPokemons,
+        handleSelectedPokemons,
+        setPlayer1Cards,
+        setPlayer2Cards,
+        player1Cards,
+        player2Cards,
+      }}
     >
       <Switch>
         <Route path={`${match.path}/`} exact component={StartPage} />
         <Route path={`${match.path}/board`} component={BoardPage} />
         <Route path={`${match.path}/finish`} component={FinishPage} />
+        <Route render={() => <Redirect to={`${match.path}/`} />} />
       </Switch>
     </PokemonContext.Provider>
   );
