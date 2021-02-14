@@ -53,7 +53,7 @@ const BoardPage = () => {
     setBoard(boardResponse.data);
   };
 
-  const getPlayer2 = async () => {
+  const getPlayer2 = React.useCallback(async () => {
     const player2Request = await fetch(
       "https://reactmarathon-api.netlify.app/api/create-player"
     );
@@ -65,12 +65,12 @@ const BoardPage = () => {
     setPlayer2(player2Cards);
     setPlayer2Cards(player2Cards);
     setPlayer1Cards(selectedPokemons);
-  };
+  }, []);
 
   useEffect(() => {
     getBoard();
     getPlayer2();
-  }, []);
+  }, [getPlayer2]);
 
   useEffect(() => {
     if (Object.keys(selectedPokemons).length === 0) {
@@ -91,7 +91,7 @@ const BoardPage = () => {
       }
     }
     return () => setWinner(null);
-  }, [steps]);
+  }, [steps, board, player1, player2]);
 
   // const handleClickCard = () => {
   //   console.log("BoardPage|handleClickCard");
