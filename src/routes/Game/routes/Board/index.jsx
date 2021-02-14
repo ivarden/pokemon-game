@@ -65,7 +65,7 @@ const BoardPage = () => {
     setPlayer2(player2Cards);
     setPlayer2Cards(player2Cards);
     setPlayer1Cards(selectedPokemons);
-  }, []);
+  }, [selectedPokemons, setPlayer1Cards, setPlayer2Cards]);
 
   useEffect(() => {
     getBoard();
