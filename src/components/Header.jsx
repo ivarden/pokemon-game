@@ -1,6 +1,6 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import styles from "./Header.module.css";
+import s from "./Header.module.css";
 
 const Header = ({
   title = "Title",
@@ -14,16 +14,18 @@ const Header = ({
     history.push("/game");
   };
   return (
-    <header className={styles.root}>
-      <div className={styles.forest}></div>
-      <div className={styles.silhouette}></div>
-      <div className={styles.moon}></div>
-      <div className={styles.container}>
+    <header className={s.root}>
+      <div className={s.forest}></div>
+      <div className={s.silhouette}></div>
+      <div className={s.moon}></div>
+      <div className={s.container}>
         <h1>{title}</h1>
         <p>{descr}</p>
-        <button className={styles.button} onClick={handleClick}>
-          Start Game
-        </button>
+        <div className={s.buttonWrap}>
+          <button className={s.button} onClick={handleClick}>
+            Start Game
+          </button>
+        </div>
         {children}
       </div>
     </header>

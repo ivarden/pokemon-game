@@ -6,3 +6,9 @@
 .wrap.isHomePage {
   padding: 0;
 }
+
+@media screen and (max-width: 620px) {
+  .wrap {
+    padding: 0;
+  }
+}

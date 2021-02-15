@@ -12,22 +12,30 @@ const PokemonCard = ({
   minimize,
   className,
   isSelected,
+  isSelected_,
   handleClickCard,
+  onClickCard,
+  possession,
 }) => {
   const handleClick = () => {
+    // handleClickCard && handleClickCard(id);
     handleClickCard && handleClickCard(key_);
+    onClickCard && onClickCard();
   };
 
   return (
     <div className={minimize ? s.root__min : s.root} onClick={handleClick}>
       <div
-        className={`${className} ${s.pokemonCard} ${
-          minimize ? s.pokemonCard__min : ""
-        } ${isSelected && s.selected} ${isActive && s.active}`}
+        className={` 
+          ${s.pokemonCard} 
+          ${isSelected && s.selected} 
+          ${isActive ? s.active : ""} 
+          ${isSelected_ === id ? s.selected2 : ""}
+          `}
       >
         <div className={s.cardFront}>
-          <div className={`${s.wrap} ${s.front}`}>
-            <div className={`${s.pokemon} ${s[type]}`}>
+          <div className={`${s.wrap} ${s.front} `}>
+            <div className={`${s.pokemon} ${s[type]} ${s[possession]}`}>
               <div className={s.values}>
                 <div className={`${s.count} ${s.top}`}>{top}</div>
                 <div className={`${s.count} ${s.right}`}>{right}</div>

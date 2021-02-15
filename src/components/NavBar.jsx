@@ -8,7 +8,7 @@ const NavBar = ({ isOpen, handleClickHamburger, bgActive }) => {
   return (
     <nav className={`${styles.navbar} ${bgActive && styles.bgActive}`}>
       <div className={styles.navWrapper}>
-        <p className={styles.brand}>LOGO</p>
+        <p className={styles.brand}>Pkemon Game</p>
         <div
           className={`${styles.menuButton} ${isOpen && styles.active}`}
           onClick={handleClik}

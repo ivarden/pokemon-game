@@ -14,18 +14,28 @@ const Container = () => {
   const [pokemons, setPokemons] = React.useState({});
 
   useEffect(() => {
-    Firebase.getPokemonsSoket((pokemons) => setPokemons(pokemons));
+    Firebase.getPokemonsSoket((pokemons) => {
+      const pokemons_ = Object.fromEntries(
+        Object.entries(pokemons).map((item) => [
+          item[0],
+          { ...item[1], isActive: false, isSelected: false, possession: "" },
+        ])
+      );
+      setPokemons(pokemons_);
+    });
     return () => Firebase.offPokemonsSoket();
   }, [Firebase]);
 
   const handleClickCard = (key) => {
     if (Object.keys(selectedPokemons).length < 5 || selectedPokemons[key]) {
+      // console.log("selectedPokemons",selectedPokemons)
+      // console.log("selectedPokemons[key]",key)
       handleSelectedPokemons(key, { ...pokemons[key] });
+      setPokemons((prevState) => ({
+        ...prevState,
+        [key]: { ...prevState[key], isSelected: !prevState[key].isSelected },
+      }));
     }
-     setPokemons((prevState) => ({
-      ...prevState,
-      [key]: { ...prevState[key], isSelected: !prevState[key].isSelected },
-    }));
   };
 
   const handleStartGame = () => {

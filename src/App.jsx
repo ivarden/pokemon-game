@@ -28,7 +28,8 @@ const App = () => {
                 <Route path="/game" component={GamePage} />
                 <Route path="/about" render={() => <h1>About</h1>} />
                 <Route path="/contact" render={() => <h1>Contact</h1>} />
-                <Route render={() => <Redirect to="/404" />} />
+                <Route render={() => <Redirect to="/" />} />
+                {/* <Route render={() => <Redirect to="/404" />} /> */}
               </Switch>
             </div>
             <Footer />
